@@ -11,7 +11,7 @@ It also requires CLEO 4+, SAMPFUNCS 5+ and samp events libraries to work.
 
 what a person with an installed script sees:
 
-![Screenshot_2](https://user-images.githubusercontent.com/115162722/194348968-b28ea0b7-fd18-4e13-be92-30570044fe24.png)
+![Screenshot_2](https://user-images.githubusercontent.com/115162722/194349240-f7c154e9-df16-493f-84e7-0bfed6a5c947.png)
 
 everyone else who does not have this script installed sees this:
 
