@@ -1,41 +1,30 @@
 -- Copyright (c) 2022 Tur41ks Prod.
 
--- Информация о скрипте
 script_name("«Message Encrypt»")
 script_version(1)
 script_author("Henrich_Rogge")
 
--- Библиотеки
 require("lib.moonloader")
 require("lib.sampfuncs")
 
 local sampev = require("lib.samp.events")
 
--- Сессионные настройки
 sInfo = {
 	myId = nil,
 	myNick = ""
 }
 
 function main()
-	-- Проверяем загружен ли sampfuncs и SAMP если не загружены - возвращаемся к началу
 	if not isSampfuncsLoaded() or not isSampLoaded() then return end
-	-- Проверяем загружен ли SA-MP
 	while not isSampAvailable() do wait(0) end
-	-- Проверяем зашёл ли игрок на сервер
 	while not sampIsLocalPlayerSpawned() do wait(0) end
-	-- Обновляем сессионные настройки
 	sInfo.myId = select(2, sampGetPlayerIdByCharHandle(PLAYER_PED))
 	sInfo.myNick = sampGetPlayerNickname(sInfo.myId)
-	-- Регистрация команд
 	sampRegisterChatCommand("enc", cmd_encode) 
-	-- Когда script загружен
 	stext("Скрипт успешно загружен! Отправить шифр. сообщение - /enc [text]")
-	-- Бесконечный цикл для постоянной работы скрипта
   	while true do wait(0) end
 end
   
--- Разбивка сообщения на буквы и символы
 function split(str)
 	local chars = {}
 	for c in string.gmatch(str, '.') do
@@ -44,9 +33,7 @@ function split(str)
 	return chars
 end
 
--- Samp Events (хуки)
 function sampev.onServerMessage(color, text)
-	-- by default decode Message Encrypt 
 	if text:find(".+ .+%[%d+%]%: Enc%. Channel %| .+") then
 		local matchRank, matchNick, matchId, matchText = text:match("(.+) (.+)%[(%d+)%]%: Enc%. Channel %| (.+)")
 		local encodeText = split(matchText)
@@ -62,7 +49,6 @@ function sampev.onServerMessage(color, text)
 	end
 end
 
--- Command encode Message Encrypt
 function cmd_encode(text)
 	local text = split(text)
 	local encodeText = ""
@@ -79,26 +65,20 @@ function cmd_encode(text)
 	end
 end
 
---- Упрощенные фукнции вывода sampAddChatMessage
--- «Spec-Shifr» text
 function stext(text)
   sampAddChatMessage((" %s {FFFFFF}%s"):format(script.this.name, text), 0x333333)
 end
 
--- » text
 function atext(text)
 	sampAddChatMessage((" » {FFFFFF}%s"):format(text), 0x333333)
 end
 
--- Если скрипт вылетел скрываем курсор, и сохраняем данные
 function onScriptTerminate(LuaScript, quitGame)
 	if LuaScript == thisScript() then
 		showCursor(false)
   	end
 end
 
---- Массивы для кодирования\декодирования данных
--- Массив для перевода входных данных в зашифрованные
 encodeAlphabet = {
 	["1"] = "0",
 	["2"] = "9",
@@ -269,7 +249,6 @@ encodeAlphabet = {
 	[" "] = " "
 }
 
--- Массив для перевода зашифрованных данных в выходные
 decodeAlphabet = {
 	["0"] = "1",
 	["9"] = "2",
