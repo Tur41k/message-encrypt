@@ -1,13 +1,14 @@
 # message-encryption
 A moonloader script allows you to communicate in encrypted messages.
 
-CLEO 4+ and SAMPFUNCS 5+ are also required.
+It also requires CLEO 4+, SAMPFUNCS 5+ and samp events libraries to work.
 
 ## Description of the script
 
 **How to use the script?** — use command /enc [Text] in game.
 
 **See how the script works:**
+
 what a person with an installed script sees
 ![Screenshot_1](https://user-images.githubusercontent.com/115162722/194346095-9c852f5d-987d-4542-bbe9-f84e077dcb58.png)
 
