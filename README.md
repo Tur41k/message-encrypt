@@ -1,7 +1,7 @@
 # message-encryption
-A moonloader script allows you to communicate in encrypted messages.
+The Moonloader script allows you to communicate using encrypted messages in GTA SA-MP.
 
-It also requires CLEO 4+, SAMPFUNCS 5+ and samp events libraries to work.
+It also requires CLEO 4+, SAMPFUNCS 5+ and samp event libraries to work.
 
 ## Description of the script
 
